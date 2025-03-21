@@ -1,0 +1,171 @@
+import cv2
+import numpy as np
+import heapq
+import motor_control  # Import motor control module
+from picamera import PiCamera
+from picamera.array import PiRGBArray
+import time
+
+def detect_purple_direction(frame):
+    # Convert frame to HSV for purple detection
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    # Define purple range in HSV (adjust as needed)
+    lower_purple = np.array([130, 50, 50])
+    upper_purple = np.array([160, 255, 255])
+    mask = cv2.inRange(hsv, lower_purple, upper_purple)
+    # Find contours
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if contours:
+        largest_contour = max(contours, key=cv2.contourArea)
+        if cv2.contourArea(largest_contour) > 500:  # area threshold
+            M = cv2.moments(largest_contour)
+            if M["m00"] != 0:
+                cx = int(M["m10"] / M["m00"])
+                height, width = mask.shape
+                if cx < width/3:
+                    return "left"
+                elif cx > 2*width/3:
+                    return "right"
+                else:
+                    return "center"
+    return None
+
+# --- New Helper: Get Purple Object Pixel Position ---
+def get_purple_object_position(frame):
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    lower_purple = np.array([130, 50, 50])
+    upper_purple = np.array([160, 255, 255])
+    mask = cv2.inRange(hsv, lower_purple, upper_purple)
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if contours:
+        largest_contour = max(contours, key=cv2.contourArea)
+        if cv2.contourArea(largest_contour) > 500:
+            M = cv2.moments(largest_contour)
+            if M["m00"] != 0:
+                cx = int(M["m10"] / M["m00"])
+                cy = int(M["m01"] / M["m00"])
+                return cx, cy
+    return None
+
+# --- New Helper: Convert Pixel Coordinates to Grid Coordinates ---
+def get_grid_position(cx, cy, frame, grid_rows=5, grid_cols=5):
+    height, width = frame.shape[:2]
+    col = int(cx / (width / grid_cols))
+    row = int(cy / (height / grid_rows))
+    return (row, col)
+
+def object_detection():
+    """
+    Capture video feed from the camera and detect red colored objects.
+    """
+    cap = cv2.VideoCapture(0)
+    detected_objects = []
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        # Convert to HSV for color detection
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        # Modified: define two red ranges to cover hue wrap-around
+        lower_red1 = np.array([0, 100, 100])
+        upper_red1 = np.array([10, 255, 255])
+        lower_red2 = np.array([160, 100, 100])
+        upper_red2 = np.array([180, 255, 255])
+        mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
+        mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
+        mask = cv2.bitwise_or(mask1, mask2)
+        # Find contours and calculate centers
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        for cnt in contours:
+            M = cv2.moments(cnt)
+            if M["m00"] != 0:
+                cx = int(M["m10"] / M["m00"])
+                cy = int(M["m01"] / M["m00"])
+                detected_objects.append((cx, cy))
+                # Draw detection (for visualization)
+                cv2.circle(frame, (cx, cy), 5, (0, 255, 0), -1)
+        cv2.imshow('Detection', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    cap.release()
+    cv2.destroyAllWindows()
+    return detected_objects
+
+def dijkstra(grid, start, goal):
+    """
+    Compute the shortest path from start to goal using Dijkstra's algorithm.
+    grid: 2D list representing the map (0: free, 1: obstacle)
+    start, goal: (x, y) tuples
+    """
+    rows, cols = len(grid), len(grid[0])
+    distances = { (i, j): float('inf') for i in range(rows) for j in range(cols) }
+    distances[start] = 0
+    prev = {}
+    queue = [(0, start)]
+    
+    directions = [(0,1), (1,0), (0,-1), (-1,0)]
+    
+    while queue:
+        dist, current = heapq.heappop(queue)
+        if current == goal:
+            break
+        for d in directions:
+            ni, nj = current[0] + d[0], current[1] + d[1]
+            if 0 <= ni < rows and 0 <= nj < cols and grid[ni][nj] == 0:
+                alt = dist + 1
+                if alt < distances[(ni, nj)]:
+                    distances[(ni, nj)] = alt
+                    prev[(ni, nj)] = current
+                    heapq.heappush(queue, (alt, (ni, nj)))
+    
+    # Reconstruct path
+    path = []
+    current = goal
+    while current != start:
+        path.append(current)
+        current = prev.get(current)
+        if current is None:
+            return []  # no path found
+    path.append(start)
+    path.reverse()
+    return path
+
+def main():
+    # Define a placeholder grid (0: free, 1: obstacle)
+    grid = [
+        [0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 0],
+        [0, 0, 0, 0, 0],
+        [0, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0]
+    ]
+    # Assume robot's current grid position is (0,0)
+    start = (0, 0)
+    
+    # Initialize PiCamera for Raspberry Pi Camera usage
+    camera = PiCamera()
+    camera.resolution = (640, 480)
+    camera.framerate = 32
+    rawCapture = PiRGBArray(camera, size=(640, 480))
+    time.sleep(0.1)  # Allow camera to warm-up
+
+    # Capture a single frame
+    camera.capture(rawCapture, format="bgr")
+    frame = rawCapture.array
+
+    obj_pos = get_purple_object_position(frame)
+    if obj_pos:
+        cx, cy = obj_pos
+        goal = get_grid_position(cx, cy, frame)
+        print("Detected purple object at grid position:", goal)
+        path = dijkstra(grid, start, goal)
+        print("Planned path:", path)
+        # Move the robot along the computed path
+        motor_control.move_along_path(path)
+    else:
+        print("No purple object detected.")
+        
+    camera.close()
+
+if __name__ == '__main__':
+    main()
