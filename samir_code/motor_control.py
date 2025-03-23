@@ -25,27 +25,24 @@ conveyorIn1 = 13
 conveyorIn2 = 14  # replacing A0 with BCM 14
 conveyorEn  = 15  # replacing A1 with BCM 15
 
-
 # --- Setup GPIO Pins ---
 drive_pins = [motorLeftIn1, motorLeftIn2, motorRightIn1, motorRightIn2]
-other_pins = [pickupIn1, pickupIn2, conveyorIn1, conveyorIn2, servo_pin]
+other_pins = [pickupIn1, pickupIn2, conveyorIn1, conveyorIn2]
 for pin in drive_pins + other_pins:
     GPIO.setup(pin, GPIO.OUT)
 
-
 # Create PWM objects
-pwmMotorLeft = GPIO.PWM(motorLeftEn, 100)    # 100 Hz for drive motors
-pwmMotorRight = GPIO.PWM(motorRightEn, 100)
-pwmPickup = GPIO.PWM(pickupEn, 100)            # 100 Hz for pickup
-pwmConveyor = GPIO.PWM(conveyorEn, 100)         # 100 Hz for conveyor
+pwmMotorLeft = GPIO.PWM(motorLeftEn, 1000)    # 1000 Hz for drive motors
+pwmMotorRight = GPIO.PWM(motorRightEn, 1000)
+pwmPickup = GPIO.PWM(pickupEn, 1000)            # 1000 Hz for pickup
+pwmConveyor = GPIO.PWM(conveyorEn, 1000)         # 1000 Hz for conveyor
 
-# Start PWM (0% duty cycle for drive motors and servo)
+# Start PWM (0% duty cycle for drive motors)
 pwmMotorLeft.start(0)
 pwmMotorRight.start(0)
 # Run pickup and conveyor initially at their default speeds:
 pwmPickup.start(75)
 pwmConveyor.start(25)
-
 
 def pickup():
     GPIO.output(pickupIn1, GPIO.HIGH)
@@ -150,7 +147,7 @@ def main():
     print("Waiting for light sensor activation...")
     light_sensor.wait_for_press()
     print("Light sensor activated. Starting robot operation.")
-    # Start driving the robot forward for 2 seconds.    
+    # Start driving the robot forward for 2 seconds.
     run_pickup(180)
     drive_forward(2)
     turn_right(0.5)
@@ -158,7 +155,6 @@ def main():
     turn_left(0.5)
     # Stop the motors for 0.3 seconds.
     stop_motors(0.3)
-
     drive_backward(2)
     turn_left(0.5)
     drive_forward(2)
