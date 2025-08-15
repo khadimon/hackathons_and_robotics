@@ -7,7 +7,6 @@
 build/
 DerivedData/
 
-
 # Compiled source #
 ###################
 *.com
@@ -45,3 +44,4 @@ DerivedData/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
