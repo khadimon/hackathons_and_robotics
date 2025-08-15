@@ -1,0 +1,26 @@
+/* styles.css */
+
+/* Navbar color */
+.navbar {
+    background-color: #ff0000; /* Red color */
+}
+
+/* Navbar link color */
+.navbar .nav-link {
+    color: #ffffff; /* White text */
+}
+
+.navbar .nav-link:hover {
+    color: #ffcccc; /* Light red on hover */
+}
+
+/* Button color */
+.btn-primary {
+    background-color: #ff0000; /* Red */
+    border-color: #ff0000; /* Same red for border */
+}
+
+.btn-primary:hover {
+    background-color: #cc0000; /* Darker red on hover */
+    border-color: #cc0000; /* Same darker red for border */
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css" /> 
+    <title>Applicant Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .applicant-details p {
+            margin: 10px 0;
+        }
+        .back-btn {
+            background-color: #d52349;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Applicant Details</h1>
+        <div class="applicant-details">
+            <p><strong>Applicant ID:</strong> <span id="applicantId"></span></p>
+            <p><strong>Name:</strong> <span id="name"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Phone:</strong> <span id="phone"></span></p>
+            <p><strong>Experience:</strong> <span id="experience"></span></p>
+            <p><strong>Skills:</strong> <span id="skills"></span></p>
+        </div>
+        <button class="back-btn" onclick="goBack()">Back to Dashboard</button>
+    </div>
+
+    <script>
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var applicantId = getUrlParameter('id');
+            document.getElementById('applicantId').textContent = applicantId;
+            // Here you would typically fetch applicant details from a server using the applicantId
+            // For this example, we'll use placeholder data
+            document.getElementById('name').textContent = "John Doe";
+            document.getElementById('email').textContent = "john.doe@example.com";
+            document.getElementById('phone').textContent = "(123) 456-7890";
+            document.getElementById('experience').textContent = "5 years";
+            document.getElementById('skills').textContent = "JavaScript, React, Node.js";
+        });
+
+        function goBack() {
+            window.location.href = 'employerDashboard.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+    "name": "alpfa-atlanta-job-matching",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+      "postcss": "^8.4.31",
+      "react": "^17.0.2",
+      "react-dom": "^17.0.2",
+      "react-scripts": "5.0.1",
+      "svgo": "^3.0.2",
+      "@svgr/webpack": "^6.5.1",
+      "resolve-url-loader": "^5.0.0",
+      "css-select": "^5.1.0"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "overrides": {
+      "nth-check": "2.1.1"
+    }
+  }
+  
