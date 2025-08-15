@@ -1,0 +1,21 @@
+{
+    "name": "alpfa-atlanta-job-matching-server",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "dev": "nodemon index.js"
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "mongoose": "^5.10.9",
+      "body-parser": "^1.19.0"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.15"
+    },
+    "overrides": {
+  "semver": "~7.5.2"
+  }
+  }
+  

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css" /> <!-- Link to the new CSS file -->
+    <title>Post a Job</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            background-color: #d52349;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Post a Job</h1>
+        <form id="jobForm">
+            <label for="jobTitle">Job Title:</label>
+            <input type="text" id="jobTitle" name="jobTitle" required>
+
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company" required>
+
+            <label for="qualifications">Qualifications:</label>
+            <textarea id="qualifications" name="qualifications" rows="4" required></textarea>
+
+            <label for="description">Job Description:</label>
+            <textarea id="description" name="description" rows="6" required></textarea>
+
+            <button type="submit">Post Job</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('jobForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to a server
+            alert('Job posted successfully!');
+            window.location.href = 'employerDashboard.html'; // Ensure this path is correct
+        });
+    </script>
+</body>
+</html>

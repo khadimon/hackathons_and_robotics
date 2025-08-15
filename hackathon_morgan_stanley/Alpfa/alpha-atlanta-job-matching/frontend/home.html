@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Home - ALPFA Atlanta</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+		<link rel="stylesheet" href="assets/css/styles.css" /> <!-- Link to the new CSS file -->
+	 
+		<style>
+			/* Additional styling for spacing, text size, and colors */
+			.container {
+				margin: 3em auto;
+				text-align: center;
+				max-width: 1200px;
+				padding: 0 2em;
+			}
+			.container header h2 {
+				font-size: 3em;
+				color: #000;
+			}
+			.container p {
+				font-size: 1.5em;
+				color: #000;
+				text-align: center;
+			}
+			.stat, .accomplishment {
+				margin: 1em 0;
+				padding: 1em;
+				background-color: #fff;
+				border: 1px solid #000;
+				border-radius: 8px;
+				transition: transform 0.3s;
+			}
+			.stat:hover, .accomplishment:hover {
+				transform: scale(1.05);
+			}
+			.stat strong, .accomplishment h3 {
+				color: #e74c3c;
+			}
+			.stat p, .accomplishment p {
+				color: #000;
+			}
+			.actions .button {
+				background-color: #e74c3c;
+				color: #fff;
+				border: none;
+				padding: 1em 2em;
+				border-radius: 8px;
+				transition: background-color 0.3s;
+				display: inline-block;
+				margin-top: 1em;
+			}
+			.actions .button:hover {
+				background-color: #c0392b;
+			}
+			.role-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 1em;
+				margin-top: 2em;
+			}
+			.role-buttons .button {
+				background-color: #e74c3c;
+				color: #fff;
+				border: none;
+				padding: 1em 2em;
+				border-radius: 8px;
+				transition: background-color 0.3s;
+			}
+			.role-buttons .button:hover {
+				background-color: #c0392b;
+			}
+			#nav ul {
+				font-size: 1.2em;
+			}
+		</style>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header">
+
+					<!-- Logo -->
+						<h1><a href="home.html">ALPFA Atlanta</a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li class="current"><a href="home.html">Home</a></li>
+								<li><a href="admin.html">Admin</a></li>
+								<li><a href="employerDashboard.html">Employers</a></li>
+								<li><a href="applicant.html">Applicants</a></li>
+							</ul>
+						</nav>
+
+					<!-- Banner -->
+						<section id="banner">
+							<header>
+								<h2>Welcome to ALPFA Atlanta</h2>
+							</header>
+						</section>
+
+					<!-- Intro -->
+					<section id="intro" class="container">
+						<header>
+							<h2>About ALPFA Atlanta</h2>
+							<p>ALPFA (Association of Latino Professionals For America) is the largest Latino association for business professionals and students, with chapters nationwide and over 95,000 members. ALPFA Atlanta provides professional development, networking opportunities, and career resources to empower and develop Latino leaders.</p>
+						</header>
+					</section>
+
+					<!-- Statistics -->
+					<section id="stats" class="container">
+						<header>
+							<h2>Our Impact</h2>
+						</header>
+						<div class="row">
+							<div class="col-3 col-12-medium">
+								<section class="stat">
+									<span class="icon solid fa-users"></span>
+									<strong>95,000+</strong>
+									<p>Members Nationwide</p>
+								</section>
+							</div>
+							<div class="col-3 col-12-medium">
+								<section class="stat">
+									<span class="icon solid fa-building"></span>
+									<strong>50+</strong>
+									<p>Chapters</p>
+								</section>
+							</div>
+							<div class="col-3 col-12-medium">
+								<section class="stat">
+									<span class="icon solid fa-award"></span>
+									<strong>100+</strong>
+									<p>Events Annually</p>
+								</section>
+							</div>
+							<div class="col-3 col-12-medium">
+								<section class="stat">
+									<span class="icon solid fa-briefcase"></span>
+									<strong>200+</strong>
+									<p>Corporate Partners</p>
+								</section>
+							</div>
+						</div>
+					</section>
+
+					<!-- Accomplishments -->
+					<section id="accomplishments" class="container">
+						<header>
+							<h2>Our Accomplishments</h2>
+						</header>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<section class="accomplishment">
+									<h3>Leadership Development</h3>
+									<p>ALPFA Atlanta has successfully developed numerous Latino leaders through our leadership programs and workshops.</p>
+								</section>
+							</div>
+							<div class="col-6 col-12-medium">
+								<section class="accomplishment">
+									<h3>Community Engagement</h3>
+									<p>We have engaged with the community through various outreach programs, making a significant impact in the lives of many.</p>
+								</section>
+							</div>
+						</div>
+					</section>
+
+					<!-- Role Selection -->
+					<section id="role-selection" class="container">
+						<header>
+							<h2>Please Select Your Role</h2>
+						</header>
+						<div class="role-buttons">
+							<a href="admin.html" class="button">Admin</a>
+							<a href="employerDashboard.html" class="button">Employers</a>
+							<a href="applicant.html" class="button">Applicants</a>
+						</div>
+					</section>
+
+				</section>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

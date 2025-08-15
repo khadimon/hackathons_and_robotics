@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Atlanta Job Matching</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Alpha Atlanta Job Matching</h1>
+    </header>
+    <main>
+        <div class="tabs">
+            <button class="tab-button" onclick="openTab('employer')">Employer</button>
+            <button class="tab-button" onclick="openTab('applicant')">Applicant</button>
+        </div>
+        <div id="employer" class="tab-content">
+            <h2>Employer</h2>
+            <form id="employer-form">
+                <label for="job-description">Job Description:</label>
+                <textarea id="job-description" name="job-description" rows="4" cols="50"></textarea>
+                <button type="button" onclick="searchApplicants()">Search Applicants</button>
+            </form>
+            <div id="applicant-results"></div>
+        </div>
+        <div id="applicant" class="tab-content">
+            <h2>Applicant</h2>
+            <form id="applicant-form">
+                <label for="resume">Upload Resume:</label>
+                <input type="file" id="resume" name="resume">
+                <label for="linkedin">LinkedIn Profile:</label>
+                <input type="url" id="linkedin" name="linkedin">
+                <button type="button" onclick="submitApplication()">Submit Application</button>
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+body {
+    background-color: white; /* Background color */
+}
+
+.logo {
+    position: absolute;
+    top: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    width: 100px; /* Adjust size */
+    height: auto;
+}
+
+.btn-primary {
+    background-color: red; /* Primary button color */
+    border: none; /* Remove border */
+}
+
+.btn-primary:hover {
+    background-color: darkred; /* Hover effect */
+}
+
+.alert {
+    border-color: red; /* Alert border color */
+}
