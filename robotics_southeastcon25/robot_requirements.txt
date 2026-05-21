@@ -1,0 +1,96 @@
+Thonny Python googlr
+
+
+Robot Parts and Functions
+
+1. Chassis
+   - Function: Provide structural support and housing for all components.
+   - Code Requirements: Design and material specifications, weight distribution calculations.
+
+2. Motors
+   - Function: Drive the robot's movement.
+   - Code Requirements: Motor control functions, feedback mechanisms.
+
+3. Sensors
+   - Function: Gather data from the environment.
+   - Code Requirements: Sensor initialization, data processing, event handling.
+
+4. Controller
+   - Function: Central processing unit.
+   - Code Requirements: Main loop, communication protocols, state management.
+
+5. Power Supply
+   - Function: Provide energy to all components.
+   - Code Requirements: Battery management, power distribution logic.
+
+6. Communication Module
+   - Function: Enable communication with other devices.
+   - Code Requirements: Setup for wireless communication, data transmission.
+
+7. User Interface
+   - Function: Allow user interaction.
+   - Code Requirements: Input handling, display functions.
+
+8. Navigation System
+   - Function: Enable autonomous movement.
+   - Code Requirements: Pathfinding algorithms, localization functions.
+
+9. Actuators
+   - Function: Control movement of robotic arms.
+   - Code Requirements: Actuator control functions, feedback mechanisms.
+
+10. Safety Features
+    - Function: Ensure safe operation.
+    - Code Requirements: Emergency stop functions, safety checks.
+
+
+----------------------------------------------------------------------------------------------
+    Robot Parts and Functions with Computer Vision
+
+1. Chassis
+   - Function: Provide structural support and housing for all components.
+   - Code Requirements: Design and material specifications, weight distribution calculations.
+
+2. Motors
+   - Function: Drive the robot's movement.
+   - Code Requirements: Motor control functions, feedback mechanisms.
+
+3. Sensors
+   - Function: Gather data from the environment.
+   - Code Requirements: Sensor initialization, data processing, event handling.
+
+4. Camera (for Computer Vision)
+   - Function: Capture images and video for processing.
+   - Code Requirements: Camera initialization, image capture functions, integration with computer vision libraries.
+
+5. Computer Vision System
+   - Function: Analyze visual data to understand the environment.
+   - Code Requirements: Object detection algorithms, image processing functions, feature extraction and tracking, pathfinding based on visual input.
+
+6. Controller
+   - Function: Central processing unit.
+   - Code Requirements: Main loop, communication protocols, state management.
+
+7. Power Supply
+   - Function: Provide energy to all components.
+   - Code Requirements: Battery management, power distribution logic.
+
+8. Communication Module
+   - Function: Enable communication with other devices.
+   - Code Requirements: Setup for wireless communication, data transmission.
+
+9. User Interface
+   - Function: Allow user interaction.
+   - Code Requirements: Input handling, display functions.
+
+10. Navigation System
+    - Function: Enable autonomous movement using visual data.
+    - Code Requirements: Pathfinding algorithms, localization functions, integration of computer vision data for navigation.
+
+11. Actuators
+    - Function: Control movement of robotic arms.
+    - Code Requirements: Actuator control functions, feedback mechanisms.
+
+12. Safety Features
+    - Function: Ensure safe operation.
+    - Code Requirements: Emergency stop functions, safety checks.
